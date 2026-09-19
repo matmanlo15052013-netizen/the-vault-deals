@@ -1,0 +1,2337 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="TheVaultDeals - Tecnología y accesorios a excelentes precios.">
+
+    <meta name="theme-color" content="#0d0d0d">
+
+    <title>TheVaultDeals | Tecnología y accesorios</title>
+
+    <style>
+
+        /* =========================
+           GENERAL
+        ========================== */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #0d0d0d;
+            color: white;
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input {
+            font-family: inherit;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================== */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            background: rgba(13, 13, 13, 0.95);
+
+            backdrop-filter: blur(12px);
+
+            border-bottom: 1px solid #252525;
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: auto;
+
+            padding: 17px 25px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #aaa;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        .cart-button {
+            border: none;
+
+            background: #25D366;
+            color: #111;
+
+            padding: 11px 16px;
+
+            border-radius: 10px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .cart-button:hover {
+            transform: scale(1.05);
+        }
+
+
+        /* =========================
+           HERO
+        ========================== */
+
+        .hero {
+            min-height: 75vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            padding: 80px 20px;
+
+            background:
+                radial-gradient(
+                    circle at top,
+                    #292929 0%,
+                    #0d0d0d 60%
+                );
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 8vw, 85px);
+
+            letter-spacing: 5px;
+
+            margin-bottom: 20px;
+
+            font-weight: 800;
+        }
+
+        .hero p {
+            color: #bbb;
+
+            font-size: 20px;
+
+            margin-bottom: 30px;
+        }
+
+        .hero-button {
+            display: inline-block;
+
+            background: #25D366;
+            color: #111;
+
+            padding: 15px 30px;
+
+            border-radius: 12px;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+        .hero-button:hover {
+            transform: translateY(-3px) scale(1.02);
+        }
+
+
+        /* =========================
+           SECCIONES
+        ========================== */
+
+        section {
+            max-width: 1200px;
+
+            margin: auto;
+
+            padding: 70px 25px;
+        }
+
+        .section-title {
+            text-align: center;
+
+            font-size: 35px;
+
+            margin-bottom: 12px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+
+            color: #999;
+
+            margin-bottom: 40px;
+        }
+
+
+        /* =========================
+           BUSCADOR
+        ========================== */
+
+        .search-container {
+            max-width: 600px;
+
+            margin: 0 auto 25px;
+        }
+
+        .search-container input {
+            width: 100%;
+
+            padding: 15px 20px;
+
+            border-radius: 12px;
+
+            border: 1px solid #333;
+
+            background: #181818;
+
+            color: white;
+
+            font-size: 16px;
+
+            outline: none;
+        }
+
+        .search-container input:focus {
+            border-color: #25D366;
+        }
+
+
+        /* =========================
+           CATEGORÍAS
+        ========================== */
+
+        .categories {
+            display: flex;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+
+            margin-bottom: 40px;
+        }
+
+        .category-btn {
+            background: #1c1c1c;
+
+            color: #ddd;
+
+            border: 1px solid #333;
+
+            padding: 10px 18px;
+
+            border-radius: 20px;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .category-btn:hover,
+        .category-btn.active {
+            background: #25D366;
+
+            color: #111;
+
+            border-color: #25D366;
+        }
+
+
+        /* =========================
+           PRODUCTOS
+        ========================== */
+
+        .productos-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(300px, 1fr)
+                );
+
+            gap: 25px;
+        }
+
+        .producto {
+            background: #1c1c1c;
+
+            padding: 25px;
+
+            border-radius: 18px;
+
+            border: 1px solid #292929;
+
+            box-shadow:
+                0 8px 30px rgba(0, 0, 0, 0.35);
+
+            transition: 0.3s;
+
+            text-align: center;
+        }
+
+        .producto:hover {
+            transform: translateY(-7px);
+
+            border-color: #444;
+        }
+
+        .producto h3 {
+            font-size: 23px;
+
+            margin-bottom: 10px;
+        }
+
+        .descripcion {
+            color: #aaa;
+
+            font-size: 15px;
+
+            margin-bottom: 15px;
+        }
+
+        .precio {
+            font-size: 25px;
+
+            font-weight: bold;
+
+            margin-bottom: 20px;
+        }
+
+
+        /* =========================
+           GALERÍA
+        ========================== */
+
+        .main-image {
+            width: 100%;
+
+            height: 300px;
+
+            object-fit: contain;
+
+            border-radius: 15px;
+
+            background: #111;
+
+            margin-bottom: 12px;
+
+            cursor: zoom-in;
+        }
+
+        .thumbnails {
+            display: flex;
+
+            justify-content: center;
+
+            gap: 8px;
+
+            flex-wrap: wrap;
+
+            margin-bottom: 20px;
+        }
+
+        .thumbnail {
+            width: 58px;
+            height: 58px;
+
+            object-fit: cover;
+
+            border-radius: 9px;
+
+            border: 2px solid transparent;
+
+            cursor: pointer;
+
+            background: #111;
+
+            transition: 0.25s;
+        }
+
+        .thumbnail:hover {
+            transform: scale(1.05);
+        }
+
+        .thumbnail.active {
+            border-color: #25D366;
+        }
+
+
+        /* =========================
+           BOTÓN PRODUCTO
+        ========================== */
+
+        .comprar-btn {
+            width: 100%;
+
+            padding: 14px;
+
+            border: none;
+
+            border-radius: 12px;
+
+            background: #25D366;
+
+            color: #111;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .comprar-btn:hover {
+            transform: scale(1.03);
+        }
+
+
+        /* =========================
+           BENEFICIOS
+        ========================== */
+
+        .benefits {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+        }
+
+        .benefit {
+            background: #181818;
+
+            border: 1px solid #292929;
+
+            padding: 30px 20px;
+
+            border-radius: 15px;
+
+            text-align: center;
+        }
+
+        .benefit-icon {
+            font-size: 35px;
+
+            margin-bottom: 10px;
+        }
+
+        .benefit h3 {
+            margin-bottom: 8px;
+        }
+
+        .benefit p {
+            color: #999;
+        }
+
+
+        /* =========================
+           FAQ
+        ========================== */
+
+        .faq {
+            max-width: 800px;
+
+            margin: auto;
+        }
+
+        details {
+            background: #181818;
+
+            border: 1px solid #292929;
+
+            border-radius: 12px;
+
+            padding: 18px 20px;
+
+            margin-bottom: 12px;
+        }
+
+        summary {
+            cursor: pointer;
+
+            font-weight: bold;
+        }
+
+        details p {
+            color: #aaa;
+
+            margin-top: 12px;
+        }
+
+
+        /* =========================
+           CONTACTO
+        ========================== */
+
+        .contact {
+            text-align: center;
+
+            background: #181818;
+
+            border-radius: 20px;
+
+            padding: 50px 20px;
+        }
+
+        .contact p {
+            color: #aaa;
+
+            margin: 10px 0 25px;
+        }
+
+        .social-links {
+            display: flex;
+
+            justify-content: center;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            background: #252525;
+
+            padding: 12px 20px;
+
+            border-radius: 10px;
+
+            transition: 0.3s;
+        }
+
+        .social-links a:hover {
+            background: #333;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        footer {
+            border-top: 1px solid #252525;
+
+            text-align: center;
+
+            padding: 30px 20px;
+
+            color: #777;
+        }
+
+
+        /* =========================
+           CARRITO
+        ========================== */
+
+        .cart-overlay {
+            position: fixed;
+
+            inset: 0;
+
+            background: rgba(0, 0, 0, 0.7);
+
+            z-index: 2000;
+
+            display: none;
+        }
+
+        .cart-overlay.active {
+            display: block;
+        }
+
+        .cart {
+            position: fixed;
+
+            top: 0;
+
+            right: -450px;
+
+            width: min(420px, 100%);
+
+            height: 100vh;
+
+            background: #151515;
+
+            z-index: 3000;
+
+            padding: 25px;
+
+            transition: 0.35s;
+
+            display: flex;
+
+            flex-direction: column;
+        }
+
+        .cart.active {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 25px;
+        }
+
+        .cart-header h2 {
+            font-size: 25px;
+        }
+
+        .close-cart {
+            background: none;
+
+            border: none;
+
+            color: white;
+
+            font-size: 30px;
+
+            cursor: pointer;
+        }
+
+        #cartItems {
+            flex: 1;
+
+            overflow-y: auto;
+        }
+
+        .cart-item {
+            display: flex;
+
+            gap: 12px;
+
+            padding: 15px 0;
+
+            border-bottom: 1px solid #333;
+        }
+
+        .cart-item img {
+            width: 70px;
+            height: 70px;
+
+            object-fit: contain;
+
+            background: #222;
+
+            border-radius: 10px;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-info h4 {
+            font-size: 15px;
+
+            margin-bottom: 5px;
+        }
+
+        .cart-item-price {
+            color: #25D366;
+
+            font-weight: bold;
+        }
+
+        .quantity-controls {
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            margin-top: 8px;
+
+            flex-wrap: wrap;
+        }
+
+        .quantity-controls button {
+            width: 27px;
+            height: 27px;
+
+            border: none;
+
+            border-radius: 6px;
+
+            background: #333;
+
+            color: white;
+
+            cursor: pointer;
+        }
+
+        .remove-item {
+            color: #ff7777 !important;
+
+            background: none !important;
+
+            width: auto !important;
+        }
+
+        .cart-footer {
+            border-top: 1px solid #333;
+
+            padding-top: 20px;
+
+            margin-top: 15px;
+        }
+
+        .cart-total {
+            display: flex;
+
+            justify-content: space-between;
+
+            font-size: 21px;
+
+            font-weight: bold;
+
+            margin-bottom: 15px;
+        }
+
+        .whatsapp-cart {
+            width: 100%;
+
+            border: none;
+
+            padding: 15px;
+
+            border-radius: 12px;
+
+            background: #25D366;
+
+            color: #111;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            font-size: 16px;
+        }
+
+        .empty-cart {
+            text-align: center;
+
+            color: #888;
+
+            padding: 50px 10px;
+        }
+
+
+        /* =========================
+           MODAL DE IMAGEN
+        ========================== */
+
+        .image-modal {
+            position: fixed;
+
+            inset: 0;
+
+            background: rgba(0, 0, 0, 0.92);
+
+            z-index: 5000;
+
+            display: none;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 20px;
+        }
+
+        .image-modal.active {
+            display: flex;
+        }
+
+        .image-modal img {
+            max-width: 95%;
+
+            max-height: 90vh;
+
+            object-fit: contain;
+
+            border-radius: 12px;
+        }
+
+        .close-modal {
+            position: absolute;
+
+            top: 20px;
+
+            right: 25px;
+
+            background: none;
+
+            border: none;
+
+            color: white;
+
+            font-size: 40px;
+
+            cursor: pointer;
+        }
+
+
+        /* =========================
+           SIN RESULTADOS
+        ========================== */
+
+        .no-results {
+            display: none;
+
+            text-align: center;
+
+            color: #888;
+
+            padding: 40px;
+        }
+
+
+        /* =========================
+           MÓVIL
+        ========================== */
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                padding: 15px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .hero {
+                min-height: 65vh;
+
+                padding: 60px 20px;
+            }
+
+            .hero h1 {
+                letter-spacing: 3px;
+            }
+
+            .hero p {
+                font-size: 17px;
+            }
+
+            section {
+                padding: 50px 15px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .benefits {
+                grid-template-columns: 1fr;
+            }
+
+            .productos-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .producto {
+                padding: 20px;
+            }
+
+            .main-image {
+                height: 250px;
+            }
+
+            .thumbnail {
+                width: 52px;
+                height: 52px;
+            }
+
+            .cart {
+                padding: 20px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header>
+
+        <nav class="navbar">
+
+            <a href="#" class="logo">
+                THEVAULTDEALS
+            </a>
+
+            <ul class="nav-links">
+
+                <li>
+                    <a href="#productos">
+                        Productos
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#beneficios">
+                        Beneficios
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#faq">
+                        FAQ
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#contacto">
+                        Contacto
+                    </a>
+                </li>
+
+            </ul>
+
+            <button
+                class="cart-button"
+                onclick="openCart()"
+            >
+                🛒 Carrito
+                (<span id="cartCount">0</span>)
+            </button>
+
+        </nav>
+
+    </header>
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <main>
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <h1>
+                    THEVAULTDEALS
+                </h1>
+
+                <p>
+                    ⚡ Tecnología y accesorios a excelentes precios.
+                </p>
+
+                <a
+                    href="#productos"
+                    class="hero-button"
+                >
+                    Ver productos
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             PRODUCTOS
+        ========================== -->
+
+        <section id="productos">
+
+            <h2 class="section-title">
+                Productos destacados
+            </h2>
+
+            <p class="section-subtitle">
+                Tecnología y accesorios seleccionados para ti.
+            </p>
+
+
+            <!-- BUSCADOR -->
+
+            <div class="search-container">
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="🔎 Buscar productos..."
+                    oninput="searchProducts()"
+                >
+
+            </div>
+
+
+            <!-- CATEGORÍAS -->
+
+            <div class="categories">
+
+                <button
+                    class="category-btn active"
+                    onclick="filterProducts('todos', this)"
+                >
+                    Todos
+                </button>
+
+                <button
+                    class="category-btn"
+                    onclick="filterProducts('audio', this)"
+                >
+                    🎧 Audio
+                </button>
+
+                <button
+                    class="category-btn"
+                    onclick="filterProducts('telefonos', this)"
+                >
+                    📱 Teléfonos
+                </button>
+
+                <button
+                    class="category-btn"
+                    onclick="filterProducts('accesorios', this)"
+                >
+                    🔋 Accesorios
+                </button>
+
+            </div>
+
+
+            <div
+                class="productos-grid"
+                id="productsGrid"
+            >
+
+
+                <!-- =========================
+                     AIRPODS
+                ========================== -->
+
+                <article
+                    class="producto"
+                    data-category="audio"
+                    data-name="AirPods Pro 2.ª Generación"
+                >
+
+                    <img
+                        id="airpodsMainImage"
+                        class="main-image"
+                        src="IMG_0007 (1).jpeg"
+                        alt="AirPods Pro 2.ª Generación"
+                        onclick="openImage(this.src)"
+                    >
+
+
+                    <div class="thumbnails">
+
+                        <img
+                            class="thumbnail active"
+                            src="IMG_0007 (1).jpeg"
+                            onclick="changeImage('airpodsMainImage', this)"
+                            alt="AirPods"
+                        >
+
+                        <img
+                            class="thumbnail"
+                            src="IMG_0009 (1).jpeg"
+                            onclick="changeImage('airpodsMainImage', this)"
+                            alt="AirPods"
+                        >
+
+                        <img
+                            class="thumbnail"
+                            src="IMG_0008 (1).jpeg"
+                            onclick="changeImage('airpodsMainImage', this)"
+                            alt="AirPods"
+                        >
+
+                        <img
+                            class="thumbnail"
+                            src="IMG_0003 (1).jpeg"
+                            onclick="changeImage('airpodsMainImage', this)"
+                            alt="AirPods"
+                        >
+
+                        <img
+                            class="thumbnail"
+                            src="IMG_0002 (2).jpeg"
+                            onclick="changeImage('airpodsMainImage', this)"
+                            alt="AirPods"
+                        >
+
+                    </div>
+
+
+                    <h3>
+                        AirPods Pro 2.ª Generación
+                    </h3>
+
+                    <p class="descripcion">
+                        Audífonos inalámbricos con cancelación de ruido.
+                    </p>
+
+                    <p class="precio">
+                        $1,200 MXN
+                    </p>
+
+                    <button
+                        class="comprar-btn"
+                        onclick="addToCart(
+                            'AirPods Pro 2.ª Generación',
+                            1200,
+                            'IMG_0007 (1).jpeg'
+                        )"
+                    >
+                        🛒 Agregar al carrito
+                    </button>
+
+                </article>
+
+
+                <!-- =========================
+                     BATERÍA MAGSAFE
+                ========================== -->
+
+                <article
+                    class="producto"
+                    data-category="accesorios"
+                    data-name="Batería MagSafe"
+                >
+
+                    <img
+                        id="magsafeMainImage"
+                        class="main-image"
+                        src="IMG_0005 (1).jpeg"
+                        alt="Batería MagSafe"
+                        onclick="openImage(this.src)"
+                    >
+
+
+                    <div class="thumbnails">
+
+                        <img
+                            class="thumbnail active"
+                            src="IMG_0005 (1).jpeg"
+                            onclick="changeImage('magsafeMainImage', this)"
+                            alt="Batería MagSafe"
+                        >
+
+                        <img
+                            class="thumbnail"
+                            src="IMG_0004 (1).jpeg"
+                            onclick="changeImage('magsafeMainImage', this)"
+                            alt="Batería MagSafe"
+                        >
+
+                        <img
+                            class="thumbnail"
+                            src="IMG_0006 (1).jpeg"
+                            onclick="changeImage('magsafeMainImage', this)"
+                            alt="Batería MagSafe"
+                        >
+
+                    </div>
+
+
+                    <h3>
+                        Batería MagSafe
+                    </h3>
+
+                    <p class="descripcion">
+                        Batería portátil compatible con dispositivos MagSafe.
+                    </p>
+
+                    <p class="precio">
+                        $349 MXN
+                    </p>
+
+                    <button
+                        class="comprar-btn"
+                        onclick="addToCart(
+                            'Batería MagSafe',
+                            349,
+                            'IMG_0005 (1).jpeg'
+                        )"
+                    >
+                        🛒 Agregar al carrito
+                    </button>
+
+                </article>
+
+
+                <!-- =========================
+                     IPHONE 11
+                ========================== -->
+
+                <article
+                    class="producto"
+                    data-category="telefonos"
+                    data-name="iPhone 11 64 GB"
+                >
+
+                    <img
+                        id="iphoneMainImage"
+                        class="main-image"
+                        src="IMG_0083.jpeg"
+                        alt="iPhone 11 64 GB negro"
+                        onclick="openImage(this.src)"
+                    >
+
+
+                    <div class="thumbnails">
+
+                        <img
+                            class="thumbnail active"
+                            src="IMG_0083.jpeg"
+                            onclick="changeImage('iphoneMainImage', this)"
+                            alt="iPhone 11"
+                        >
+
+                        <img
+                            class="thumbnail"
+                            src="IMG_0089.jpeg"
+                            onclick="changeImage('iphoneMainImage', this)"
+                            alt="iPhone 11"
+                        >
+
+                        <img
+                            class="thumbnail"
+                            src="IMG_0085.jpeg"
+                            onclick="changeImage('iphoneMainImage', this)"
+                            alt="iPhone 11"
+                        >
+
+                        <img
+                            class="thumbnail"
+                            src="IMG_0087.jpeg"
+                            onclick="changeImage('iphoneMainImage', this)"
+                            alt="iPhone 11"
+                        >
+
+                        <img
+                            class="thumbnail"
+                            src="IMG_0080.jpeg"
+                            onclick="changeImage('iphoneMainImage', this)"
+                            alt="iPhone 11"
+                        >
+
+                        <img
+                            class="thumbnail"
+                            src="IMG_0088.jpeg"
+                            onclick="changeImage('iphoneMainImage', this)"
+                            alt="iPhone 11"
+                        >
+
+                        <img
+                            class="thumbnail"
+                            src="IMG_0081.jpeg"
+                            onclick="changeImage('iphoneMainImage', this)"
+                            alt="iPhone 11"
+                        >
+
+                        <img
+                            class="thumbnail"
+                            src="IMG_0079.jpeg"
+                            onclick="changeImage('iphoneMainImage', this)"
+                            alt="iPhone 11"
+                        >
+
+                    </div>
+
+
+                    <h3>
+                        iPhone 11 — 64 GB
+                    </h3>
+
+                    <p class="descripcion">
+                        🖤 Negro · 🔓 Desbloqueado · 🔐 iCloud libre
+                        <br>
+                        🔋 Batería reacondicionada
+                        · 📱 Pantalla reacondicionada
+                        <br>
+                        ✅ Face ID, cámaras, bocinas y botones funcionando
+                        <br>
+                        🎁 Funda gratis · 🔌 Cargador original incluido
+                    </p>
+
+                    <p class="precio">
+                        $3,000 MXN
+                    </p>
+
+                    <button
+                        class="comprar-btn"
+                        onclick="addToCart(
+                            'iPhone 11 — 64 GB',
+                            3000,
+                            'IMG_0083.jpeg'
+                        )"
+                    >
+                        🛒 Agregar al carrito
+                    </button>
+
+                </article>
+
+            </div>
+
+
+            <div
+                id="noResults"
+                class="no-results"
+            >
+                😕 No encontramos ese producto.
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             BENEFICIOS
+        ========================== -->
+
+        <section id="beneficios">
+
+            <h2 class="section-title">
+                ¿Por qué comprar con nosotros?
+            </h2>
+
+            <p class="section-subtitle">
+                Queremos que comprar sea fácil y claro.
+            </p>
+
+
+            <div class="benefits">
+
+                <div class="benefit">
+
+                    <div class="benefit-icon">
+                        🚚
+                    </div>
+
+                    <h3>
+                        Envíos a México
+                    </h3>
+
+                    <p>
+                        Realizamos envíos a diferentes partes de México.
+                    </p>
+
+                </div>
+
+
+                <div class="benefit">
+
+                    <div class="benefit-icon">
+                        💬
+                    </div>
+
+                    <h3>
+                        Atención directa
+                    </h3>
+
+                    <p>
+                        Puedes contactarnos directamente por WhatsApp.
+                    </p>
+
+                </div>
+
+
+                <div class="benefit">
+
+                    <div class="benefit-icon">
+                        ⚡
+                    </div>
+
+                    <h3>
+                        Compra sencilla
+                    </h3>
+
+                    <p>
+                        Agrega tus productos al carrito y realiza tu pedido.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             FAQ
+        ========================== -->
+
+        <section id="faq">
+
+            <h2 class="section-title">
+                Preguntas frecuentes
+            </h2>
+
+            <p class="section-subtitle">
+                Respuestas rápidas.
+            </p>
+
+
+            <div class="faq">
+
+                <details>
+
+                    <summary>
+                        ¿Hacen envíos?
+                    </summary>
+
+                    <p>
+                        Sí. Contáctanos por WhatsApp para conocer las
+                        opciones de envío disponibles.
+                    </p>
+
+                </details>
+
+
+                <details>
+
+                    <summary>
+                        ¿Cómo puedo comprar?
+                    </summary>
+
+                    <p>
+                        Agrega los productos al carrito y después pulsa
+                        "Pedir por WhatsApp".
+                    </p>
+
+                </details>
+
+
+                <details>
+
+                    <summary>
+                        ¿Puedo preguntar antes de comprar?
+                    </summary>
+
+                    <p>
+                        Claro. Puedes contactarnos por WhatsApp para
+                        resolver tus dudas.
+                    </p>
+
+                </details>
+
+
+                <details>
+
+                    <summary>
+                        ¿La pantalla y batería del iPhone 11 son originales?
+                    </summary>
+
+                    <p>
+                        No. Tanto la pantalla como la batería son
+                        reacondicionadas.
+                    </p>
+
+                </details>
+
+
+                <details>
+
+                    <summary>
+                        ¿Qué incluye el iPhone 11?
+                    </summary>
+
+                    <p>
+                        Incluye una funda gratis y un cargador original.
+                    </p>
+
+                </details>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CONTACTO
+        ========================== -->
+
+        <section id="contacto">
+
+            <div class="contact">
+
+                <h2>
+                    ¿Tienes alguna pregunta?
+                </h2>
+
+                <p>
+                    Escríbenos y te ayudaremos con tu compra.
+                </p>
+
+
+                <a
+                    class="hero-button"
+                    href="https://wa.me/525529171032?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20TheVaultDeals"
+                    target="_blank"
+                >
+                    💬 Contactar por WhatsApp
+                </a>
+
+
+                <br>
+                <br>
+
+
+                <div class="social-links">
+
+                    <a
+                        href="https://www.instagram.com/thevaultdeals.shop/"
+                        target="_blank"
+                    >
+                        📸 Instagram
+                    </a>
+
+
+                    <a
+                        href="#"
+                        target="_blank"
+                    >
+                        🎵 TikTok
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <p>
+            © 2026 TheVaultDeals
+        </p>
+
+        <p>
+            Tecnología y accesorios.
+        </p>
+
+    </footer>
+
+
+    <!-- =========================
+         CARRITO
+    ========================== -->
+
+    <div
+        class="cart-overlay"
+        id="cartOverlay"
+        onclick="closeCart()"
+    ></div>
+
+
+    <aside
+        class="cart"
+        id="cart"
+    >
+
+        <div class="cart-header">
+
+            <h2>
+                🛒 Tu carrito
+            </h2>
+
+            <button
+                class="close-cart"
+                onclick="closeCart()"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div id="cartItems">
+
+            <div class="empty-cart">
+                Tu carrito está vacío.
+            </div>
+
+        </div>
+
+
+        <div class="cart-footer">
+
+            <div class="cart-total">
+
+                <span>
+                    Total:
+                </span>
+
+                <span id="cartTotal">
+                    $0 MXN
+                </span>
+
+            </div>
+
+
+            <button
+                class="whatsapp-cart"
+                onclick="sendOrder()"
+            >
+                💬 Pedir por WhatsApp
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =========================
+         MODAL DE IMAGEN
+    ========================== -->
+
+    <div
+        class="image-modal"
+        id="imageModal"
+        onclick="closeImage(event)"
+    >
+
+        <button
+            class="close-modal"
+            onclick="closeImage()"
+        >
+            ×
+        </button>
+
+        <img
+            id="modalImage"
+            src=""
+            alt="Imagen ampliada"
+        >
+
+    </div>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+        /* =========================
+           CARRITO
+        ========================== */
+
+        let cart = [];
+
+
+        /* Recuperar carrito */
+
+        const savedCart =
+            localStorage.getItem("theVaultDealsCart");
+
+
+        if (savedCart) {
+
+            try {
+
+                cart = JSON.parse(savedCart);
+
+            } catch {
+
+                cart = [];
+
+            }
+
+        }
+
+
+        /* =========================
+           GUARDAR CARRITO
+        ========================== */
+
+        function saveCart() {
+
+            localStorage.setItem(
+                "theVaultDealsCart",
+                JSON.stringify(cart)
+            );
+
+        }
+
+
+        /* =========================
+           AGREGAR PRODUCTO
+        ========================== */
+
+        function addToCart(
+            name,
+            price,
+            image
+        ) {
+
+            const existingProduct =
+                cart.find(
+                    product =>
+                        product.name === name
+                );
+
+
+            if (existingProduct) {
+
+                existingProduct.quantity++;
+
+            } else {
+
+                cart.push({
+
+                    name: name,
+
+                    price: price,
+
+                    image: image,
+
+                    quantity: 1
+
+                });
+
+            }
+
+
+            saveCart();
+
+            updateCart();
+
+            openCart();
+
+        }
+
+
+        /* =========================
+           ACTUALIZAR CARRITO
+        ========================== */
+
+        function updateCart() {
+
+            const cartItems =
+                document.getElementById(
+                    "cartItems"
+                );
+
+
+            const cartCount =
+                document.getElementById(
+                    "cartCount"
+                );
+
+
+            const cartTotal =
+                document.getElementById(
+                    "cartTotal"
+                );
+
+
+            if (cart.length === 0) {
+
+                cartItems.innerHTML = `
+                    <div class="empty-cart">
+                        Tu carrito está vacío.
+                    </div>
+                `;
+
+                cartCount.textContent = "0";
+
+                cartTotal.textContent = "$0 MXN";
+
+                saveCart();
+
+                return;
+
+            }
+
+
+            let total = 0;
+
+            let count = 0;
+
+
+            cartItems.innerHTML = "";
+
+
+            cart.forEach(
+                (product, index) => {
+
+                    const subtotal =
+                        product.price *
+                        product.quantity;
+
+
+                    total += subtotal;
+
+                    count += product.quantity;
+
+
+                    const item =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    item.className =
+                        "cart-item";
+
+
+                    item.innerHTML = `
+
+                        <img
+                            src="${product.image}"
+                            alt="${product.name}"
+                        >
+
+                        <div class="cart-item-info">
+
+                            <h4>
+                                ${product.name}
+                            </h4>
+
+                            <div class="cart-item-price">
+                                $${product.price.toLocaleString("es-MX")} MXN
+                            </div>
+
+                            <div class="quantity-controls">
+
+                                <button
+                                    onclick="changeQuantity(${index}, -1)"
+                                >
+                                    −
+                                </button>
+
+                                <span>
+                                    ${product.quantity}
+                                </span>
+
+                                <button
+                                    onclick="changeQuantity(${index}, 1)"
+                                >
+                                    +
+                                </button>
+
+                                <button
+                                    class="remove-item"
+                                    onclick="removeFromCart(${index})"
+                                >
+                                    Eliminar
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    `;
+
+
+                    cartItems.appendChild(item);
+
+                }
+            );
+
+
+            cartCount.textContent = count;
+
+
+            cartTotal.textContent =
+                "$" +
+                total.toLocaleString("es-MX") +
+                " MXN";
+
+
+            saveCart();
+
+        }
+
+
+        /* =========================
+           CAMBIAR CANTIDAD
+        ========================== */
+
+        function changeQuantity(
+            index,
+            amount
+        ) {
+
+            cart[index].quantity += amount;
+
+
+            if (
+                cart[index].quantity <= 0
+            ) {
+
+                cart.splice(index, 1);
+
+            }
+
+
+            updateCart();
+
+        }
+
+
+        /* =========================
+           ELIMINAR PRODUCTO
+        ========================== */
+
+        function removeFromCart(index) {
+
+            cart.splice(index, 1);
+
+            updateCart();
+
+        }
+
+
+        /* =========================
+           ABRIR CARRITO
+        ========================== */
+
+        function openCart() {
+
+            document
+                .getElementById("cart")
+                .classList
+                .add("active");
+
+
+            document
+                .getElementById("cartOverlay")
+                .classList
+                .add("active");
+
+        }
+
+
+        /* =========================
+           CERRAR CARRITO
+        ========================== */
+
+        function closeCart() {
+
+            document
+                .getElementById("cart")
+                .classList
+                .remove("active");
+
+
+            document
+                .getElementById("cartOverlay")
+                .classList
+                .remove("active");
+
+        }
+
+
+        /* =========================
+           WHATSAPP
+        ========================== */
+
+        function sendOrder() {
+
+            if (cart.length === 0) {
+
+                alert(
+                    "Tu carrito está vacío."
+                );
+
+                return;
+
+            }
+
+
+            let message =
+                "Hola, quiero hacer un pedido en TheVaultDeals:\n\n";
+
+
+            let total = 0;
+
+
+            cart.forEach(product => {
+
+                const subtotal =
+                    product.price *
+                    product.quantity;
+
+
+                total += subtotal;
+
+
+                message +=
+                    "• " +
+                    product.name +
+                    " x" +
+                    product.quantity +
+                    " - $" +
+                    subtotal.toLocaleString("es-MX") +
+                    " MXN\n";
+
+            });
+
+
+            message +=
+                "\nTotal: $" +
+                total.toLocaleString("es-MX") +
+                " MXN";
+
+
+            message +=
+                "\n\n¿Me pueden confirmar disponibilidad y envío?";
+
+
+            const whatsappURL =
+                "https://wa.me/525529171032?text=" +
+                encodeURIComponent(message);
+
+
+            window.open(
+                whatsappURL,
+                "_blank"
+            );
+
+        }
+
+
+        /* =========================
+           CAMBIAR IMAGEN
+        ========================== */
+
+        function changeImage(
+            mainImageId,
+            thumbnail
+        ) {
+
+            const mainImage =
+                document.getElementById(
+                    mainImageId
+                );
+
+
+            mainImage.src =
+                thumbnail.src;
+
+
+            const thumbnails =
+                thumbnail
+                    .parentElement
+                    .querySelectorAll(
+                        ".thumbnail"
+                    );
+
+
+            thumbnails.forEach(
+                image => {
+
+                    image.classList
+                        .remove("active");
+
+                }
+            );
+
+
+            thumbnail.classList
+                .add("active");
+
+        }
+
+
+        /* =========================
+           ZOOM
+        ========================== */
+
+        function openImage(src) {
+
+            const modal =
+                document.getElementById(
+                    "imageModal"
+                );
+
+
+            const modalImage =
+                document.getElementById(
+                    "modalImage"
+                );
+
+
+            modalImage.src = src;
+
+            modal.classList
+                .add("active");
+
+        }
+
+
+        function closeImage(event) {
+
+            if (
+                event &&
+                event.target &&
+                event.target.id ===
+                    "modalImage"
+            ) {
+
+                return;
+
+            }
+
+
+            document
+                .getElementById("imageModal")
+                .classList
+                .remove("active");
+
+        }
+
+
+        /* =========================
+           BUSCADOR
+        ========================== */
+
+        function searchProducts() {
+
+            const search =
+                document
+                    .getElementById(
+                        "searchInput"
+                    )
+                    .value
+                    .toLowerCase()
+                    .trim();
+
+
+            const products =
+                document.querySelectorAll(
+                    ".producto"
+                );
+
+
+            const noResults =
+                document.getElementById(
+                    "noResults"
+                );
+
+
+            let visibleProducts = 0;
+
+
+            products.forEach(
+                product => {
+
+                    const name =
+                        product.dataset
+                            .name
+                            .toLowerCase();
+
+
+                    if (
+                        name.includes(search)
+                    ) {
+
+                        product.style.display =
+                            "";
+
+                        visibleProducts++;
+
+                    } else {
+
+                        product.style.display =
+                            "none";
+
+                    }
+
+                }
+            );
+
+
+            if (
+                visibleProducts === 0
+            ) {
+
+                noResults.style.display =
+                    "block";
+
+            } else {
+
+                noResults.style.display =
+                    "none";
+
+            }
+
+        }
+
+
+        /* =========================
+           FILTROS
+        ========================== */
+
+        function filterProducts(
+            category,
+            button
+        ) {
+
+            const products =
+                document.querySelectorAll(
+                    ".producto"
+                );
+
+
+            document
+                .querySelectorAll(
+                    ".category-btn"
+                )
+                .forEach(btn => {
+
+                    btn.classList
+                        .remove("active");
+
+                });
+
+
+            button.classList
+                .add("active");
+
+
+            document
+                .getElementById(
+                    "searchInput"
+                )
+                .value = "";
+
+
+            document
+                .getElementById(
+                    "noResults"
+                )
+                .style.display = "none";
+
+
+            products.forEach(
+                product => {
+
+                    if (
+                        category === "todos" ||
+                        product.dataset.category ===
+                            category
+                    ) {
+
+                        product.style.display =
+                            "";
+
+                    } else {
+
+                        product.style.display =
+                            "none";
+
+                    }
+
+                }
+            );
+
+        }
+
+
+        /* =========================
+           TECLA ESC
+        ========================== */
+
+        document.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (
+                    event.key === "Escape"
+                ) {
+
+                    closeCart();
+
+                    closeImage();
+
+                }
+
+            }
+        );
+
+
+        /* =========================
+           INICIAR
+        ========================== */
+
+        updateCart();
+
+    </script>
+
+</body>
+</html>
